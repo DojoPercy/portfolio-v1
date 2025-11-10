@@ -24,7 +24,7 @@ async function getMetadata() {
     
     if (!siteSettings) {
       return {
-        title: 'David Ojo - Full-Stack System Architect',
+        title: 'David Ojo - Full-Stack Software Developer',
         description: 'Designing systems that connect people, data, and purpose',
         ogImage: undefined,
       }
@@ -37,17 +37,8 @@ async function getMetadata() {
     let ogImageUrl: string | undefined
     if (siteSettings.seo?.ogImage) {
       try {
-        // Use the image URL builder to get the proper CDN URL
+        // Use the image URL builder to get the proper CDN URL (returns full URL)
         ogImageUrl = getImageUrl(siteSettings.seo.ogImage, 1200, 630)
-        // Ensure it's an absolute URL
-        if (ogImageUrl && !ogImageUrl.startsWith('http')) {
-          // If it's a relative path, prepend the Sanity CDN base URL
-          const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-          const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
-          if (projectId) {
-            ogImageUrl = `https://cdn.sanity.io/images/${projectId}/${dataset}${ogImageUrl}`
-          }
-        }
       } catch (error) {
         console.error('Error building OG image URL:', error)
       }

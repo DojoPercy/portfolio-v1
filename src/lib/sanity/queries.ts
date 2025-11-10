@@ -171,18 +171,7 @@ export const getSiteSettings = groq`
     seo {
       title,
       description,
-      ogImage {
-        asset-> {
-          _id,
-          url,
-          metadata {
-            dimensions {
-              width,
-              height
-            }
-          }
-        }
-      },
+      ogImage,
       noindex
     }
   }
