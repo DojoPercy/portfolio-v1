@@ -13,7 +13,16 @@ export function HeroTypingEffect() {
       'Full-Stack Developer',
       'System Architect',
       'Creative Problem Solver',
-      'AI Integration Specialist',
+      'AI Agent Developer',
+      'Software Engineer',
+      'Web Developer',
+      'Mobile Developer',
+      'UI/UX Designer',
+      'Database Administrator',
+      'Network Administrator',
+      'System Administrator',
+      'System Analyst',
+      'System Developer',
     ]
     
     const currentText = texts[currentIndex]

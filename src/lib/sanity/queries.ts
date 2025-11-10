@@ -18,7 +18,9 @@ const projectFields = `
   problemStatement,
   researchInsights,
   outcome,
-  metrics
+  metrics,
+  githubUrl,
+  liveUrl
 `
 
 // Get all projects

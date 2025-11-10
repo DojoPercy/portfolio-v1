@@ -6,12 +6,12 @@ import Image from 'next/image'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { getImageUrl } from '@/lib/sanity/image'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Github, ExternalLink } from 'lucide-react'
 
 interface Project {
   _id: string
   title: string
-  slug: { current: string }
+  slug: { current: string } | string
   summary?: string
   description?: string
   techStack?: string[]
@@ -19,6 +19,8 @@ interface Project {
   impact?: string
   coverImage?: any
   featured?: boolean
+  githubUrl?: string
+  liveUrl?: string
 }
 
 interface ProjectsGridProps {
@@ -120,11 +122,46 @@ export function ProjectsGrid({ projects, limit }: ProjectsGridProps) {
                     <p className="text-xs text-neon-cyan mb-4 line-clamp-2">{project.impact}</p>
                   )}
                   {project.role && (
-                    <p className="text-xs text-gray-500 mb-2">{project.role}</p>
+                    <p className="text-xs text-gray-500 mb-4">{project.role}</p>
                   )}
-                  <div className="flex items-center text-sm text-gray-400 group-hover:text-neon-cyan transition-colors mt-auto">
-                    View Case Study
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  
+                  {/* Links */}
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-700/50">
+                    <Link 
+                      href={`/project/${slug}`}
+                      className="flex items-center text-sm text-gray-400 group-hover:text-neon-cyan transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      View Case Study
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    
+                    <div className="flex items-center gap-3">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-gray-400 hover:text-neon-cyan transition-colors"
+                          aria-label="View on GitHub"
+                        >
+                          <Github className="h-4 w-4" />
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-gray-400 hover:text-neon-cyan transition-colors"
+                          aria-label="View live project"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </Card>
               </Link>

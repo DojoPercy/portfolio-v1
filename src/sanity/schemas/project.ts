@@ -116,6 +116,18 @@ export const project = defineType({
       title: 'Featured',
       initialValue: false,
     }),
+    defineField({
+      name: 'githubUrl',
+      type: 'url',
+      title: 'GitHub Repository URL',
+      description: 'Link to the project repository on GitHub',
+    }),
+    defineField({
+      name: 'liveUrl',
+      type: 'url',
+      title: 'Live Project URL',
+      description: 'Link to the live/demo version of the project',
+    }),
   ],
   preview: {
     select: {

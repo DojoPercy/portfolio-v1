@@ -8,6 +8,7 @@ import { useUIStore } from '@/stores/ui-store'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -49,7 +50,7 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-display font-bold neon-glow">David Ojo</span>
+           <Image src="/logo.png" alt="David Ojo" width={40} height={40} />
           </Link>
 
           {/* Desktop Navigation */}

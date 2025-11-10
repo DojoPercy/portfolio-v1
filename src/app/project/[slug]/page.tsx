@@ -7,8 +7,9 @@ import { getImageUrl } from '@/lib/sanity/image'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/Badge'
 import { Card } from '@/components/ui/Card'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Github, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
 import { notFound } from 'next/navigation'
 import { ProcessVisualizer } from '@/components/sections/ProcessVisualizer'
 
@@ -59,12 +60,49 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
 
           <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 neon-glow-low">
-              {project.title}
-            </h1>
-            {project.role && (
-              <p className="text-lg text-gray-400 mb-4">Role: {project.role}</p>
-            )}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+              <div className="flex-1">
+                <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 neon-glow-low">
+                  {project.title}
+                </h1>
+                {project.role && (
+                  <p className="text-lg text-gray-400 mb-4">Role: {project.role}</p>
+                )}
+              </div>
+              
+              {/* Project Links */}
+              {(project.githubUrl || project.liveUrl) && (
+                <div className="flex items-center gap-3">
+                  {project.githubUrl && (
+                    <Button
+                      asChild
+                      variant="secondary"
+                      size="sm"
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      GitHub
+                    </Button>
+                  )}
+                  {project.liveUrl && (
+                    <Button
+                      asChild
+                      variant="neon"
+                      size="sm"
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Live Demo
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
+            
             {project.techStack && project.techStack.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.techStack.map((tech: string) => (
