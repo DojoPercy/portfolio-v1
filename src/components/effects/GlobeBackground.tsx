@@ -6,6 +6,7 @@ import createGlobe from 'cobe'
 export function HeroGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null)
   const [size, setSize] = useState(600)
 
   useEffect(() => {
@@ -40,15 +41,15 @@ export function HeroGlobe() {
   useEffect(() => {
     if (!canvasRef.current || size === 0) return
 
-    let phi = 0
-    let globe: ReturnType<typeof createGlobe> | null = null
-
     // Destroy existing globe if it exists
-    if (globe) {
-      globe.destroy()
+    if (globeRef.current) {
+      globeRef.current.destroy()
+      globeRef.current = null
     }
 
-    globe = createGlobe(canvasRef.current, {
+    let phi = 0
+
+    globeRef.current = createGlobe(canvasRef.current, {
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       width: size * 2,
       height: size * 2,
@@ -73,8 +74,9 @@ export function HeroGlobe() {
     })
 
     return () => {
-      if (globe) {
-        globe.destroy()
+      if (globeRef.current) {
+        globeRef.current.destroy()
+        globeRef.current = null
       }
     }
   }, [size])
