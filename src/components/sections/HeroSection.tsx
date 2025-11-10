@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { useUIStore } from '@/stores/ui-store'
 import { HeroTypingEffect } from '@/components/effects/TypingEffect'
 import { HeroGlobe } from '@/components/effects/GlobeBackground'
+import Link from 'next/link'
 
 interface SiteSettings {
   siteTitle?: string
@@ -117,7 +118,8 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
             >
               Activate Experience
             </Button>
-            <Button 
+           <Link href="#projects">
+           <Button 
               variant="secondary" 
               size="lg" 
               
@@ -126,6 +128,7 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
             >
               View Projects
             </Button>
+           </Link>
           </motion.div>
         </div>
       </div>
