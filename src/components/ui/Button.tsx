@@ -32,16 +32,36 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
   href?: string
+  target?: string
+  rel?: string
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, href, ...props }, ref) => {
+  ({ className, variant, size, asChild, href, target, rel, children, ...props }, ref) => {
     if (asChild && href) {
+      // Check if it's an external link
+      const isExternal = href.startsWith('http') || href.startsWith('//')
+      
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            target={target || '_blank'}
+            rel={rel || 'noopener noreferrer'}
+            className={cn(buttonVariants({ variant, size, className }))}
+          >
+            {children}
+          </a>
+        )
+      }
+      
       return (
         <Link
           href={href}
           className={cn(buttonVariants({ variant, size, className }))}
-        />
+        >
+          {children}
+        </Link>
       )
     }
     return (
@@ -49,7 +69,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </button>
     )
   }
 )

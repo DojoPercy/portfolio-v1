@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               
               {/* Project Links */}
               {(project.githubUrl || project.liveUrl) && (
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-wrap">
                   {project.githubUrl && (
                     <Button
                       asChild
@@ -82,21 +82,25 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Github className="h-4 w-4 mr-2" />
-                      GitHub
+                      <>
+                        <Github className="h-4 w-4 mr-2" />
+                        GitHub
+                      </>
                     </Button>
                   )}
                   {project.liveUrl && (
                     <Button
                       asChild
-                      variant="neon"
+                      variant="primary"
                       size="sm"
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      <>
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Live Demo
+                      </>
                     </Button>
                   )}
                 </div>

@@ -24,7 +24,7 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ siteSettings }: AboutSectionProps) {
-  const professionalSummary = `Full-Stack Software Developer with expertise in Next.js, NestJS and Flutter. Skilled in designing scalable web and mobile applications, API development, authentication systems, and AI integration. Experienced in managing deployments, optimizing performance, and collaborating across teams to deliver high-quality, production-ready solutions. Focused on system architecture and project leadership within SaaS and startup environments.`
+  const professionalSummary = `Full-Stack Software Developer with expertise in Next.js, NestJS and Flutter. Skilled in designing scalable web and mobile applications, API development, authentication systems, and AI integration.`
 
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
