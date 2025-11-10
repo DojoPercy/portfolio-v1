@@ -53,51 +53,64 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
   return (
     <section 
       ref={heroRef} 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#0a0a0a' }}
+      className="relative min-h-screen flex items-center justify-center"
+      style={{ 
+        backgroundColor: '#0a0a0a',
+        overflow: 'hidden',
+      }}
     >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a]" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00f0ff]/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#0047AB]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#00f0ff]/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#0047AB]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Globe behind typing effect */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <HeroGlobe />
-      </div>
+      <HeroGlobe />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 text-center">
         <h1 
-          className="hero-title text-5xl md:text-7xl lg:text-8xl mb-6"
+          className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 px-2"
           style={{ 
             fontFamily: "'Space Grotesk', system-ui, sans-serif",
             fontWeight: 'bold',
             color: '#ffffff',
-            textShadow: '0 0 20px rgba(0, 240, 255, 0.5)'
+            textShadow: '0 0 20px rgba(0, 240, 255, 0.5)',
+            lineHeight: '1.1',
           }}
         >
           {siteSettings?.siteTitle || 'David Ojo'}
         </h1>
 
-        <div className="relative">
+        <div className="relative mb-8 sm:mb-10 md:mb-12 px-4">
           <p 
-            className="hero-subtitle text-2xl md:text-3xl lg:text-4xl mb-12 relative z-10"
+            className="hero-subtitle text-xl sm:text-2xl md:text-3xl lg:text-4xl relative z-10"
             style={{ 
               fontFamily: "'Space Grotesk', system-ui, sans-serif",
               fontWeight: '600',
               color: '#00f0ff',
-              minHeight: '3rem'
+              minHeight: '2.5rem',
+              lineHeight: '1.4',
             }}
           >
             <HeroTypingEffect />
           </p>
         </div>
 
-        <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" onClick={handleActivateExperience}>
+        <div className="hero-cta flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
+          <Button 
+            size="lg" 
+            onClick={handleActivateExperience}
+            className="w-full sm:w-auto"
+          >
             Activate Experience
           </Button>
-          <Button variant="secondary" size="lg" asChild href="#projects">
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            asChild 
+            href="#projects"
+            className="w-full sm:w-auto"
+          >
             View Projects
           </Button>
         </div>
