@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import createGlobe from 'cobe'
 
-export function GlobeBackground() {
+export function HeroGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -13,27 +13,27 @@ export function GlobeBackground() {
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 800 * 2,
-      height: 800 * 2,
+      width: 600 * 2,
+      height: 600 * 2,
       phi: 0,
-      theta: 0,
+      theta: 0.3,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 20000,
-      mapBrightness: 6,
-      mapBaseBrightness: 0.1,
-      baseColor: [0.03, 0.08, 0.15], // Dark blue background
+      mapSamples: 16000,
+      mapBrightness: 4,
+      mapBaseBrightness: 0.08,
+      baseColor: [0.02, 0.05, 0.12], // Very dark blue background
       glowColor: [0, 0.94, 1], // Neon cyan glow (RGB: 0, 240, 255)
       markerColor: [0, 240, 255], // Neon cyan markers
       markers: [
         // Ghana - Accra (where David is based)
-        { location: [5.6037, -0.1870], size: 0.1 },
+        { location: [5.6037, -0.1870], size: 0.12 },
         // Kumasi (KNUST)
-        { location: [6.7159, -1.5699], size: 0.08 },
+        { location: [6.7159, -1.5699], size: 0.1 },
       ],
       onRender: (state: { phi?: number }) => {
         state.phi = phi
-        phi += 0.003
+        phi += 0.005
       },
     })
 
@@ -43,16 +43,16 @@ export function GlobeBackground() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+      <div className="relative">
         <canvas
           ref={canvasRef}
-          className="opacity-30"
+          className="opacity-20"
           style={{
-            width: 800,
-            height: 800,
-            maxWidth: '100vw',
-            maxHeight: '100vh',
+            width: 600,
+            height: 600,
+            maxWidth: '90vw',
+            maxHeight: '90vh',
           }}
         />
       </div>

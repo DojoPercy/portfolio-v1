@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { Button } from '@/components/ui/Button'
 import { useUIStore } from '@/stores/ui-store'
 import { HeroTypingEffect } from '@/components/effects/TypingEffect'
+import { HeroGlobe } from '@/components/effects/GlobeBackground'
 
 interface SiteSettings {
   siteTitle?: string
@@ -60,6 +61,11 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00f0ff]/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#0047AB]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
+      {/* Globe behind typing effect */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <HeroGlobe />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 text-center">
         <h1 
           className="hero-title text-5xl md:text-7xl lg:text-8xl mb-6"
@@ -73,17 +79,19 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
           {siteSettings?.siteTitle || 'David Ojo'}
         </h1>
 
-        <p 
-          className="hero-subtitle text-2xl md:text-3xl lg:text-4xl mb-12"
-          style={{ 
-            fontFamily: "'Space Grotesk', system-ui, sans-serif",
-            fontWeight: '600',
-            color: '#00f0ff',
-            minHeight: '3rem'
-          }}
-        >
-          <HeroTypingEffect />
-        </p>
+        <div className="relative">
+          <p 
+            className="hero-subtitle text-2xl md:text-3xl lg:text-4xl mb-12 relative z-10"
+            style={{ 
+              fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              fontWeight: '600',
+              color: '#00f0ff',
+              minHeight: '3rem'
+            }}
+          >
+            <HeroTypingEffect />
+          </p>
+        </div>
 
         <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button size="lg" onClick={handleActivateExperience}>
