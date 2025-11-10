@@ -24,13 +24,13 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
 
   useEffect(() => {
     // Mark as complete immediately - content is always visible
-        setSystemBootComplete(true)
+    setSystemBootComplete(true)
     
     // Optional: Add a subtle fade-in animation after a brief delay
     // This won't interfere with visibility
     const timer = setTimeout(() => {
       try {
-        gsap.to('.hero-title, .hero-subtitle, .hero-description, .hero-tagline, .hero-cta', {
+        gsap.to('.hero-title, .hero-subtitle, .hero-cta', {
           opacity: 1,
           duration: 0.5,
           ease: 'power2.out',
@@ -70,34 +70,19 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
             textShadow: '0 0 20px rgba(0, 240, 255, 0.5)'
           }}
         >
-          System Online
+          {siteSettings?.siteTitle || 'David Ojo'}
         </h1>
 
         <p 
-          className="hero-subtitle text-2xl md:text-3xl lg:text-4xl mb-4"
+          className="hero-subtitle text-2xl md:text-3xl lg:text-4xl mb-12"
           style={{ 
             fontFamily: "'Space Grotesk', system-ui, sans-serif",
             fontWeight: '600',
-            color: '#00f0ff'
+            color: '#00f0ff',
+            minHeight: '3rem'
           }}
         >
-          {siteSettings?.siteTitle || 'David Ojo'}
-          <br />
           <HeroTypingEffect />
-        </p>
-
-        <p 
-          className="hero-description text-lg md:text-xl max-w-3xl mx-auto mb-8"
-          style={{ color: '#d1d5db' }}
-        >
-          {siteSettings?.tagline || 'Full-Stack Software Developer with expertise in Next.js, NestJS and Flutter'}
-        </p>
-
-        <p 
-          className="hero-tagline text-base md:text-lg max-w-2xl mx-auto mb-12"
-          style={{ color: '#9ca3af' }}
-        >
-          {siteSettings?.missionStatement || 'Designing systems that connect people, data, and purpose'}
         </p>
 
         <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">

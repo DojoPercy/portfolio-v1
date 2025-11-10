@@ -8,6 +8,7 @@ import { SoundEffects } from '@/components/effects/SoundEffects'
 import { ScrollProgress } from '@/components/effects/ScrollProgress'
 import { MicroInteractions } from '@/components/effects/MicroInteractions'
 import { ParticleBackground } from '@/components/effects/ParticleBackground'
+import { GlobeBackground } from '@/components/effects/GlobeBackground'
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -18,6 +19,7 @@ interface ProvidersProps {
 export function Providers({ children, voiceIntroUrl, ambientMusicUrl }: ProvidersProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <GlobeBackground />
       <ParticleBackground />
       <CustomCursor />
       <SoundEffects />
