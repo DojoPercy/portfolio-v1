@@ -180,7 +180,7 @@ export function AudioController({ voiceSrc = '/audio/voice-intro.mp3', bgSrc = '
       {audioActive && voicePlaying && (
         <div className="fixed bottom-20 right-4 z-50 glass rounded-lg px-4 py-2 text-sm text-white max-w-xs animate-in fade-in slide-in-from-bottom-4 duration-300">
           <p className="text-xs text-gray-400 mb-1">Voice Intro</p>
-          <p>"System online. Hello, I'm David Ojo — a full-stack system architect and creative product designer..."</p>
+          <p>"System online. Hello, I'm David Ojo — a Software Developer and creative product designer..."</p>
         </div>
       )}
     </>
