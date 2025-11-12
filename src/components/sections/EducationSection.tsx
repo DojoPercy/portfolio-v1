@@ -32,7 +32,7 @@ export function EducationSection({ education }: EducationSectionProps) {
   }
 
   return (
-    <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-32 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

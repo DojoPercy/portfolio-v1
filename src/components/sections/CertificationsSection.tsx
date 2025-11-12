@@ -49,7 +49,7 @@ export function CertificationsSection({ certifications }: CertificationsSectionP
   }
 
   return (
-    <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-surface/50">
+    <section id="certifications" className="py-32 px-4 sm:px-6 lg:px-8 bg-dark-surface/50">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

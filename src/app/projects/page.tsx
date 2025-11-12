@@ -33,7 +33,7 @@ export default async function ProjectsPage() {
           </div>
 
           <Suspense fallback={<div className="h-64 bg-dark-surface rounded-lg animate-pulse" />}>
-            <ProjectsGrid projects={projects} />
+            <ProjectsGrid projects={projects} limit={10} />
           </Suspense>
         </div>
       </section>
@@ -41,6 +41,9 @@ export default async function ProjectsPage() {
     </main>
   )
 }
+
+
+
 
 
 

@@ -49,13 +49,6 @@
   * {
     border-color: transparent;
   }
-  
-  /* Hide default cursor on desktop when custom cursor is active */
-  @media (pointer: fine) and (min-width: 769px) {
-    * {
-      cursor: none !important;
-    }
-  }
 
   html {
     scroll-behavior: smooth;

@@ -111,24 +111,23 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
+            <Link href="#projects">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="w-full sm:w-auto min-w-[200px] text-white"
+              >
+                View My Work
+              </Button>
+            </Link>
             <Button 
               size="lg" 
               onClick={handleActivateExperience}
+              variant="secondary"
               className="w-full sm:w-auto min-w-[200px]"
             >
-              Activate Experience
+              Enable Audio (Optional)
             </Button>
-           <Link href="#projects">
-           <Button 
-              variant="secondary" 
-              size="lg" 
-              
-              href="#projects"
-              className="w-full sm:w-auto min-w-[200px] text-white"
-            >
-              View Projects
-            </Button>
-           </Link>
           </motion.div>
         </div>
       </div>

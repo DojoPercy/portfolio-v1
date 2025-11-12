@@ -1,0 +1,38 @@
+{
+  "name": "David Ojo - Full-Stack Software Developer Portfolio",
+  "short_name": "David Ojo",
+  "description": "Portfolio of David Ojo - Full-Stack Software Developer, System Architect, and Product Designer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00f0ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["portfolio", "developer", "software"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
+
+
+

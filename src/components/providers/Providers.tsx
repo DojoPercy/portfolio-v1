@@ -3,7 +3,6 @@
 import { ThemeProvider } from 'next-themes'
 import { AnimatePresence } from 'framer-motion'
 import { AudioController } from '@/components/audio/AudioController'
-import { CustomCursor } from '@/components/effects/CustomCursor'
 import { SoundEffects } from '@/components/effects/SoundEffects'
 import { ScrollProgress } from '@/components/effects/ScrollProgress'
 import { MicroInteractions } from '@/components/effects/MicroInteractions'
@@ -19,7 +18,6 @@ export function Providers({ children, voiceIntroUrl, ambientMusicUrl }: Provider
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <ParticleBackground />
-      <CustomCursor />
       <SoundEffects />
       <ScrollProgress />
       <MicroInteractions />

@@ -45,7 +45,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
   const categories = Object.keys(skillsByCategory).sort()
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-surface/50">
+    <section id="skills" className="py-32 px-4 sm:px-6 lg:px-8 bg-dark-surface/50">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

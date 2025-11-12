@@ -17,6 +17,7 @@ import {
 import { ProjectsCarousel } from '@/components/sections/ProjectsCarousel'
 import { RecentLogs } from '@/components/sections/RecentLogs'
 import { AboutSection } from '@/components/sections/AboutSection'
+import { HireMeSection } from '@/components/sections/HireMeSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { EducationSection } from '@/components/sections/EducationSection'
@@ -91,7 +92,9 @@ export default async function HomePage() {
       
       <AboutSection siteSettings={siteSettings} />
       
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <HireMeSection />
+      
+      <section id="projects" className="py-32 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <div className="lg:col-span-2">
@@ -117,7 +120,7 @@ export default async function HomePage() {
       
       <CertificationsSection certifications={certifications} />
 
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-display font-bold mb-12 neon-glow-low text-center">Get In Touch</h2>
           <ContactForm />

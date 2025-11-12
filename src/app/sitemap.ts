@@ -3,7 +3,7 @@ import { client } from '@/lib/sanity'
 import { getAllProjects, getAllWritings } from '@/lib/sanity/queries'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://davidojo.site'
 
   try {
     const [projects, writings] = await Promise.all([
@@ -71,6 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]
   }
 }
+
 
 
 

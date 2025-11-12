@@ -27,7 +27,7 @@ export function AboutSection({ siteSettings }: AboutSectionProps) {
   const professionalSummary = `Full-Stack Software Developer with expertise in Next.js, NestJS and Flutter. Skilled in designing scalable web and mobile applications, API development, authentication systems, and AI integration.`
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-32 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

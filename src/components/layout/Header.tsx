@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X, Code, Palette } from 'lucide-react'
 import { useUIStore } from '@/stores/ui-store'
 import { Button } from '@/components/ui/Button'
@@ -11,27 +11,41 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/#about', label: 'About' },
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#skills', label: 'Skills' },
-  { href: '/#experience', label: 'Experience' },
-  { href: '/writings', label: 'Writings' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/', label: 'Home', type: 'page' },
+  { href: '/#about', label: 'About', type: 'hash' },
+  { href: '/#hire-me', label: 'Why Hire Me', type: 'hash' },
+  { href: '/projects', label: 'Projects', type: 'page' },
+  { href: '/#skills', label: 'Skills', type: 'hash' },
+  { href: '/#experience', label: 'Experience', type: 'hash' },
+  { href: '/writings', label: 'Writings', type: 'page' },
+  { href: '/contact', label: 'Contact', type: 'page' },
 ]
 
 export function Header() {
   const pathname = usePathname()
+  const router = useRouter()
   const { designMode, setDesignMode } = useUIStore()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [currentHash, setCurrentHash] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    // Track hash changes
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash)
+    }
+    handleHashChange() // Initial hash
+    window.addEventListener('hashchange', handleHashChange)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('hashchange', handleHashChange)
+    }
   }, [])
 
   const toggleDesignMode = () => {
@@ -56,18 +70,39 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             {navItems.map((item) => {
-              const isHashLink = item.href.startsWith('/#')
-              const isActive = pathname === item.href || (pathname === '/' && isHashLink)
+              const isHashLink = item.type === 'hash'
+              const isPageLink = item.type === 'page'
+              
+              // Determine if link is active
+              const isActive = isPageLink 
+                ? pathname === item.href
+                : pathname === '/' && currentHash === item.href
+              
               const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
                 if (isHashLink) {
                   e.preventDefault()
                   const hash = item.href.split('#')[1]
-                  const element = document.getElementById(hash)
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  
+                  // If we're on home page, just scroll
+                  if (pathname === '/') {
+                    const element = document.getElementById(hash)
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                  } else {
+                    // If we're on another page, navigate to home then scroll
+                    router.push(item.href)
+                    // Scroll after navigation completes
+                    setTimeout(() => {
+                      const element = document.getElementById(hash)
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                      }
+                    }, 100)
                   }
                 }
               }
+              
               return (
                 <Link
                   key={item.href}
@@ -127,21 +162,42 @@ export function Header() {
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => {
-                const isHashLink = item.href.startsWith('/#')
-                const isActive = pathname === item.href || (pathname === '/' && isHashLink)
+                const isHashLink = item.type === 'hash'
+                const isPageLink = item.type === 'page'
+                
+                // Determine if link is active
+                const isActive = isPageLink 
+                  ? pathname === item.href
+                  : pathname === '/' && currentHash === item.href
+                
                 const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
                   setMobileMenuOpen(false)
                   if (isHashLink) {
                     e.preventDefault()
                     const hash = item.href.split('#')[1]
-                    setTimeout(() => {
-                      const element = document.getElementById(hash)
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                      }
-                    }, 100)
+                    
+                    // If we're on home page, just scroll
+                    if (pathname === '/') {
+                      setTimeout(() => {
+                        const element = document.getElementById(hash)
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }
+                      }, 100)
+                    } else {
+                      // If we're on another page, navigate to home then scroll
+                      router.push(item.href)
+                      // Scroll after navigation completes
+                      setTimeout(() => {
+                        const element = document.getElementById(hash)
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }
+                      }, 100)
+                    }
                   }
                 }
+                
                 return (
                   <Link
                     key={item.href}
