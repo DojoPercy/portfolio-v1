@@ -22,7 +22,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ siteSettings }: HeroSectionProps) {
   const heroRef = useRef<HTMLDivElement>(null)
-  const { setSystemBootComplete, setAudioActive } = useUIStore()
+  const { setSystemBootComplete } = useUIStore()
 
   useEffect(() => {
     setSystemBootComplete(true)
@@ -45,10 +45,6 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
       clearTimeout(timer)
     }
   }, [setSystemBootComplete])
-
-  const handleActivateExperience = () => {
-    setAudioActive(true)
-  }
 
   return (
     <section 
@@ -113,21 +109,22 @@ export function HeroSection({ siteSettings }: HeroSectionProps) {
           >
             <Link href="#projects">
               <Button 
-                variant="secondary" 
+                variant="primary" 
                 size="lg" 
-                className="w-full sm:w-auto min-w-[200px] text-white"
+                className="w-full sm:w-auto min-w-[200px]"
               >
                 View My Work
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              onClick={handleActivateExperience}
-              variant="secondary"
-              className="w-full sm:w-auto min-w-[200px]"
-            >
-              Enable Audio (Optional)
-            </Button>
+            <Link href="#contact">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="w-full sm:w-auto min-w-[200px]"
+              >
+                Get In Touch
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </div>

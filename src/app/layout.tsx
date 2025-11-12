@@ -155,33 +155,11 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-async function getAudioFiles() {
-  try {
-    const siteSettings = await client.fetch(getSiteSettings).catch(() => null)
-    
-    // Get audio file URLs from Sanity assets
-    const voiceIntroUrl = siteSettings?.voiceIntroFile?.asset?.url || null
-    const ambientMusicUrl = siteSettings?.ambientMusicFile?.asset?.url || null
-    
-    return {
-      voiceIntroUrl: voiceIntroUrl || '/audio/voice-intro.mp3',
-      ambientMusicUrl: ambientMusicUrl || '/audio/ambient-loop.mp3',
-    }
-  } catch (error) {
-    console.error('Error fetching audio files:', error)
-    return {
-      voiceIntroUrl: '/audio/voice-intro.mp3',
-      ambientMusicUrl: '/audio/ambient-loop.mp3',
-    }
-  }
-}
-
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { voiceIntroUrl, ambientMusicUrl } = await getAudioFiles()
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://davidojo.dev'
   
   // Get site settings for structured data
@@ -254,7 +232,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
-        <Providers voiceIntroUrl={voiceIntroUrl} ambientMusicUrl={ambientMusicUrl}>
+        <Providers>
           {children}
         </Providers>
       </body>
